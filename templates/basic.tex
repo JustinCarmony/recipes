@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{fontspec}  % Required for font customization in XeLaTeX
+% Specify the custom font directory
+\setmainfont{Libre Baskerville}[
+  Path = /usr/local/share/fonts/custom/,
+  Extension = .ttf
+]
+\setsansfont{Lato}[
+  Path = /usr/local/share/fonts/custom/,
+  Extension = .ttf
+]
+
+\usepackage[margin=0.25in]{geometry}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+
+% Header and footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{Generated w/ template version 0.1.0}
+\fancyfoot[R]{\today}
+
+\title{$title$}
+\author{$author$}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{Source:} $source-url$ \\
+\textbf{Servings:} $servings$ \\
+\textbf{Prep Time:} $prep-time$ \\
+\textbf{Nutritional Information:} $nutrition-info$
+
+\section*{Shopping List}
+$shopping-list$
+
+\section*{Prep Instructions}
+$prep-instructions$
+
+\newpage
+
+\begin{multicols}{2}
+\section*{Prepped Ingredients}
+$container-list$
+
+\columnbreak
+
+\section*{Cooking Instructions}
+$instructions$
+\end{multicols}
+
+\end{document}

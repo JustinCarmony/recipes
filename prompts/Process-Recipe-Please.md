@@ -1,0 +1,96 @@
+# AI Recipe Formatting Prompt
+
+### Prompt for AI:
+
+You will receive:
+1. **A template**: A structured Markdown format to represent recipes.
+2. **An example**: A recipe formatted according to the template, demonstrating section breakdown, mise en place organization, and ingredient groups.
+3. **A recipe yaml file**: The recipe to be converted.
+
+### Task:
+1. Parse the recipe instructions carefully, paying close attention to the exact ingredients listed in the recipe. Do not mistakenly substitute similar ingredients (e.g., switching chicken thighs for chicken breasts).
+2. Fill in each section of the provided template:
+   - **Shopping List**: Include all ingredients and quantities exactly as stated in the recipe.
+   - **Mise En Place**: Group ingredients logically based on when they are combined in the instructions. Use descriptive group names and specify container sizes (list in Context Below). Ingredients should be broken down by quantity and preparation method (e.g., diced, cubed).
+   - **Instructions**: After the last ingredient is listed from a group, insert ingredient group name wrapped in square brackets (e.g., "[Curry Base]").
+   - **Recipe Notes**: Add any key information or tips provided from the recipe, including special techniques, substitutions, or other important instructions.
+
+### Context
+- Variables are wrapped in {{name}}, optional have {{name:optional}}, and last section are any details. Example: {{prepatation method:optional:wrap in square brackets}}
+- Types of Containers
+  - small glass bowl
+  - medium metal bowl
+  - large glass bowl
+  - large plastic bowl
+
+---- Start Example Template ----
+---
+title: "Recipe Title"
+author: "Author"
+author: "Paint the Kitchen Red"
+source-url: "https://www.example.com/recipe/url"
+image-url: "https://www.example.com/recipe/image.jpg"
+servings: 4
+prep-time: "10 minutes"
+cook-time: "20 minutes"
+total-time: "30 minutes"
+nutrition-info: "Calories: 250, Protein: 24g, Fat: 14g"
+shopping-list: |
+  - {{measurement}} {{ingredient}} {{preparation method:optional:wrap in [] brackets}}
+- prep-instructions: |
+  - {{instruction}}
+- recipe-notes: |
+  - {{item:bolded}} - {{note text}}
+- mise-en-place: |
+  - {{group name}} - {{container type}}
+    - {{measurement}} {{ingredient}} {{preparation method:optional:wrap in [] brackets}}
+- instructions: |
+  - {{Instruction 1:append the group name wrapped in [] brackets after any list of ingredients}}
+---
+---- End Example Template ----
+
+Please read this recipe, and show me the markdown you generated for it. Double check your work. Please avoid the following mistakes:
+
+- Combining ingredients together when they shouldn't be. Only group them based on the recipe instructions.
+- Do not change the instructions, only add the reference to the group name after the ingredients are listed.
+- Do not change any of the ingredient amounts.
+- Do not make any substitutions.
+
+Recipe YAML: 
+
+```
+title: Instant Pot Mongolian Beef
+author: 'Author: '
+source_url: https://www.jocooks.com/wprm_print/instant-pot-mongolian-beef
+image_url: https://www.jocooks.com/wp-content/uploads/2018/10/instant-pot-mongolian-beef-1-3-150x150.jpg
+servings: 'Servings:'
+prep_time: 10 minutes
+cook_time: 20 minutes
+total_time: 30 minutes
+nutrition_info: 'Serving: 1serving | Calories: 358kcal | Carbohydrates: 37g | Protein: 26g | Fat: 10g | Saturated Fat: 3g | Cholesterol: 68mg | Sodium: 1134mg | Potassium: 494mg | Sugar: 27g | Vitamin A: 65IU | Vitamin C: 1.1mg | Calcium: 57mg | Iron: 2.7mg'
+note:
+    - TIP: To slice the steak easier, place it in the freezer for 20 minutes before slicing.
+    - MEAT: Top round beef can also be used for this. You can also use chicken breast or thighs instead of beef.
+ingredients:
+    - 2 pound flank steak cut into thin strips
+    - ½ cup cornstarch
+    - 2 tablespoon rice vinegar
+    - 1 cup soy sauce low sodium
+    - ⅔ cup water
+    - 4 cloves garlic minced
+    - 1 teaspoon ginger minced
+    - 1 cup brown sugar packed
+    - ½ teaspoon red pepper flakes
+    - 3 tablespoon sesame oil
+    - 2 green onions chopped
+    - 2 tablespoon sesame seeds
+instructions:
+    - 'Prepare the beef: In a large bowl toss the flank steak strips with the cornstarch together and let them sit for 5 minutes. This will ensure the cornstarch penetrates the beef.'
+    - 'Make the sauce: In a medium size bowl add the rice vinegar, soy sauce, water, garlic, ginger, brown sugar, red pepper flakes and whisk well. Set aside.'
+    - Turn your Instant Pot to the saute setting. (See your manufacturer's guide for detailed instructions on how to use your instant pot.)
+    - 'Sear the beef: Add half of the sesame oil to the pot. When the oil is hot add half of the flank steak and cook 2 to 3 minutes until it starts to brown. Remove from the pot and repeat with remaining sesame oil and beef. Return all the beef to the pot and press the cancel button on your Instant Pot.'
+    - Pour the sauce over the beef and stir well.
+    - 'Cook: Close the lid (follow the manufacturer''s guide for instructions on how to close the instant pot lid). Set the Instant Pot to the Manual (high pressure) setting and set the timer to 10 minutes.'
+    - When cooking is complete, use a quick release to depressurize.
+    - Stir in the green onions and garnish with sesame seeds. Serve over rice.
+    ```
